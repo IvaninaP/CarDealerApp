@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CarDealerApp.Models.Car>
+
+@{
+    ViewBag.Title = "Списък с коли";
+}
+
+<h2 class="mb-4">Автосалон - налични коли</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        ➕ Добави нова кола
+    </a>
+</p>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Марка</th>
+            <th>Модел</th>
+            <th>Двигател</th>
+            <th>Цвят</th>
+            <th>Конски сили</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Make</td>
+                <td>@car.Model</td>
+                <td>@car.EngineType</td>
+                <td>@car.Color</td>
+                <td>@car.HorsePower</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = car.Id })" class="btn btn-sm btn-warning">✏️ Редакция</a>
+                    <a href="@Url.Action("Details", new { id = car.Id })" class="btn btn-sm btn-info">ℹ️ Детайли</a>
+                    <a href="@Url.Action("Delete", new { id = car.Id })" class="btn btn-sm btn-danger">🗑️ Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
